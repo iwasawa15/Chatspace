@@ -1,0 +1,11 @@
+@mixin icons{
+  float: right;
+  margin: 0px 5px;
+  text-decoration: none;
+  &:link{
+    color: white;
+  }
+  &:visited{
+    color: white;
+  }
+}
