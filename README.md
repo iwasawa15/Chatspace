@@ -4,13 +4,13 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|string|null: false, index: true|
 |email|string|null: false, unique: true|
 
 ### Association
 
-- has_mamy :groups, through: :members
 - has_many :members
+- has_many :groups, through: :members
 - has_many :messages
 
 
@@ -22,8 +22,8 @@
 
 ### Association
 
-- has_many :users, through: :members
 - has_many :members
+- has_many :users, through: :members
 - has_many :messages
 
 
@@ -44,8 +44,8 @@
 |------|----|-------|
 |body|text| |
 |image|string| |
-|group_id|integer|null: false|
-|user_id|integer|null: false|
+|group_id|reference|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
 
 ### Association
 
