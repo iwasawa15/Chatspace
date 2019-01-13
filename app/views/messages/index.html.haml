@@ -1,0 +1,43 @@
+.message
+  チャットグループが作成されました
+
+.left-content
+  .user__name
+    ryosuke
+    %a.user__setting{href: "#"}
+      %i.fa.fa-cog
+    %a.user__newgroup{href: "#"}
+      %i.fa.fa-edit
+
+  .group
+    .group__name
+      tech
+    .group__status
+      まだメッセージはありません。
+
+.right-content
+  .header
+    %a.header.button{href: "#"}
+      Edit
+    .header__title
+      sampleグループ
+    .header__members
+      ryosuke
+  .messages
+    .messages__name
+      ryosuke
+    .messages__time
+      19/01/06 00:34:32
+    .messges__text
+      hello
+  .input
+    %form
+      %input.input.text-field{type: "text_field", placeholder: "type a message"}
+      %label.input.text-field.text-field__picture
+        %input.upload-file{type:"file"}
+        %i.fa.fa-image{style: "padding: 15px;"}
+      %input.input.button{type: "submit", value: "Send"}
+
+
+
+
