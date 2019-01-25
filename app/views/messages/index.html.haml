@@ -3,8 +3,8 @@
 
 .left-content
   .user__name
-    ryosuke
-    %a.user__setting{href: "#"}
+    = current_user.name
+    = link_to edit_user_path(current_user), class: "user__setting" do
       %i.fa.fa-cog
     %a.user__newgroup{href: "#"}
       %i.fa.fa-edit
