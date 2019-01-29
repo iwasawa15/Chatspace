@@ -15,9 +15,9 @@
     .messges__text
       hello
   .input
-    %form
-      %input.input.text-field{type: "text_field", placeholder: "type a message"}
-      %label.input.text-field.text-field__picture
-        %input.upload-file{type:"file"}
+    = form_for [@group, @message] do |f|
+      = f.text_field :body, class: "input text-field", placeholder: "type a message"
+      = f.label class: "input text-field text-field__picture" do
+        = f.file_field class: "input upload-file"
         %i.fa.fa-image{style: "padding: 15px;"}
-      %input.input.button{type: "submit", value: "Send"}
+      = f.submit 'Send', class: "input button"
