@@ -1,0 +1,15 @@
+.left-content
+  .user__name
+    = current_user.name
+    = link_to edit_user_path(current_user), class: "user__setting" do
+      %i.fa.fa-cog
+    = link_to new_group_path, class: "user__newgroup" do
+      %i.fa.fa-edit
+
+  .group
+    - current_user.groups.each do |group|
+      = link_to group_messages_path(group) do
+        .group__name
+          = group.name
+        .group__status
+          まだメッセージはありません。
