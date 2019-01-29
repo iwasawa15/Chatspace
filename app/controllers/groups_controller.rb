@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
 
   def update
     if @group.udpate(group_params)
-      redirect_to :root, notice: "グループを編集しました"
+      redirect_to group_messages_path(@group), notice: "グループを編集しました"
     else
       render :edit
     end
