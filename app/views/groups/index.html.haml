@@ -7,10 +7,12 @@
       %i.fa.fa-edit
 
   .group
-    .group__name
-      tech
-    .group__status
-      まだメッセージはありません。
+    - current_user.groups.each do |group|
+      = link_to group_messages_path(group) do
+        .group__name
+          = group.name
+        .group__status
+          まだメッセージはありません。
 
 .right-content
   .header
