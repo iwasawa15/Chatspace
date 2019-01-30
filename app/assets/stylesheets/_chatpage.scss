@@ -96,8 +96,8 @@ a{
     height: 90px;
     box-sizing: border-box;
     .text-field{
-      padding: 0px;
-      width: calc(100% - 165px);
+      padding: 0px 15px;
+      width: calc(100% - 195px);
       height: 50px;
       background-color: $white;
       float: left;
@@ -105,6 +105,10 @@ a{
       &__picture{
         width: 50px;
         margin-right: 15px;
+        height: 50px;
+        background-color: $white;
+        float: left;
+        border: none;
       }
     }
     .upload-file{

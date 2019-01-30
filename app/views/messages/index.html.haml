@@ -16,8 +16,8 @@
       hello
   .input
     = form_for [@group, @message] do |f|
-      = f.text_field :body, class: "input text-field", placeholder: "type a message"
-      = f.label class: "input text-field text-field__picture" do
-        = f.file_field class: "input upload-file"
+      = f.text_field :body, class: "text-field", placeholder: "type a message"
+      = f.label :image, class: "text-field__picture" do
         %i.fa.fa-image{style: "padding: 15px;"}
-      = f.submit 'Send', class: "input button"
+        = f.file_field :image, class: "upload-file"
+      = f.submit 'Send', class: "button"
