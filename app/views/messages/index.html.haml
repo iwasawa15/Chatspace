@@ -2,8 +2,7 @@
 
 .right-content
   .header
-    %a.header.button{href: "#"}
-      Edit
+    = link_to "Edit", edit_group_path(@group), class: "button"
     .header__title
       = @group.name
     %ul.header__members

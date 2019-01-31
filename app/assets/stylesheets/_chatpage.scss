@@ -66,6 +66,7 @@ a{
       float: right;
       font-size: 15px;
       color: $light_blue;
+      box-sizing: border-box;
     }
   }
   .messages{
