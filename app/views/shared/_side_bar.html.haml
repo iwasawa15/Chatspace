@@ -12,4 +12,7 @@
         .group__name
           = group.name
         .group__status
-          まだメッセージはありません。
+          - if group.messages.present?
+            = group.messages.last.body
+          - else
+            まだメッセージはありません。

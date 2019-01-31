@@ -6,8 +6,11 @@
       Edit
     .header__title
       = @group.name
-    .header__members
-      = "Members: #{@group.users}"
+    %ul.header__members
+      Members:
+      - @group.users.each do |user|
+        = user.name
+
   .messages
     =render @messages
   .input
