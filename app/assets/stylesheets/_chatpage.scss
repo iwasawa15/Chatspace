@@ -70,9 +70,12 @@ a{
   }
   .messages{
     border-top: solid 1px #eeeeee;
-    padding: 46px 40px 0px;
+    padding: 26px 40px 0px;
     height: calc(100vh - 190px);
     box-sizing: border-box;
+    &__box{
+      padding: 20px 0px
+    }
     &__name{
       float:left;
       margin-right: 10px;
