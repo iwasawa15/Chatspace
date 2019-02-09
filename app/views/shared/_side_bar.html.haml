@@ -13,6 +13,9 @@
           = group.name
         .group__status
           - if group.messages.present?
-            = group.messages.last.body
+            - if group.messages.last.image?
+              画像が送信されました
+            - else
+              = group.messages.last.body
           - else
             まだメッセージはありません。
