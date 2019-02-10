@@ -6,5 +6,5 @@
   - if message.body.present?
     .messages__text
       = message.body
-  - elsif message.image.present?
+  - if message.image.present?
     = image_tag message.image.url
