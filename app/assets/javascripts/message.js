@@ -45,7 +45,7 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html)
-      $('.messages').animate({scrollTop: $('.messages').height()}, 'fast')
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
       $('.text-field').val('')
       $('.upload-file').val('')
     })
