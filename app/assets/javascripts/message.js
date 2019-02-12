@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $(function(){
     function buildHTML(message){
-      if (message.image){
+        var image = (message.image) ? `<img src=${message.image}>` : "";
         var html = `<div class="messages__box" data-message-id=${message.id}>
                       <div class="messages__name">
                         ${message.user_name}
@@ -12,21 +12,8 @@ $(document).on('turbolinks:load', function() {
                       <div class="messages__text">
                         ${message.body}
                       </div>
-                      <img src=${message.image}>
+                      ${image}
                     </div>`
-      } else {
-        var html = `<div class="messages__box" data-message-id=${message.id}>
-                      <div class="messages__name">
-                        ${message.user_name}
-                      </div>
-                      <div class="messages__time">
-                        ${message.date}
-                      </div>
-                      <div class="messages__text">
-                        ${message.body}
-                      </div>
-                    </div>`
-      }
       return html;
     }
 
