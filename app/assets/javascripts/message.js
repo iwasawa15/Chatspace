@@ -1,21 +1,21 @@
 $(document).on('turbolinks:load', function() {
-$(function(){
-  function buildSendMessageHTML(message){
-    var image = (message.image) ? `<img src=${message.image}>` : "";
-    var html = `<div class="messages__box">
-                  <div class="messages__name">
-                    ${message.user_name}
-                  </div>
-                  <div class="messages__time">
-                    ${message.date}
-                  </div>
-                  <div class="messages__text">
-                    ${message.body}
-                  </div>
-                  ${image}
-                </div>`
-    return html;
-  }
+  $(function(){
+    function buildSendMessageHTML(message){
+      var image = (message.image) ? `<img src=${message.image}>` : "";
+      var html = `<div class="messages__box">
+                    <div class="messages__name">
+                      ${message.user_name}
+                    </div>
+                    <div class="messages__time">
+                      ${message.date}
+                    </div>
+                    <div class="messages__text">
+                      ${message.body}
+                    </div>
+                    ${image}
+                  </div>`
+      return html;
+    }
 
     $('#new_message').on('submit', function(e){
       e.preventDefault();
@@ -30,14 +30,15 @@ $(function(){
         contentType: false
       })
 
-    .done(function(message){
-      var html = buildSendMessageHTML(message);
-      $('.messages').append(html)
-      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
-      $('.new_message')[0].reset()
-    })
-    .fail(function(){
-      alert('error');
+      .done(function(message){
+        var html = buildSendMessageHTML(message);
+        $('.messages').append(html)
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+        $('.new_message')[0].reset()
+      })
+      .fail(function(){
+        alert('error');
+      })
     })
 
     function update(){
@@ -52,15 +53,15 @@ $(function(){
           }
         })
 
-        .always(function(data){
-        if(data.length != 0){
-          data.forEach(function(message){
-            var html = buildHTML(message);
-            $('.messages').append(html)
-            $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
-          });
-        };
-      })
+        .always(function(messages){
+          if(messages.length != 0){
+            messages.forEach(function(message){
+              var html = buildSendMessageHTML(message);
+              $('.messages').append(html)
+              $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+            });
+          }
+        })
       } else {
         clearInterval(timer);
       }
