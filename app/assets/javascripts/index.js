@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function(){
   $(function(){
     var search_list = $("#user-search-result");
     var chat_members = $("#chat-group-users")
-    function appendUser(user) {
+    function appendSearchUserResult(user) {
       var user = `<div class="chat-group-user clearfix">
                       <p class="chat-group-user__name">${user.name}</p>
                       <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</a>
@@ -10,7 +10,7 @@ $(document).on('turbolinks:load', function(){
       search_list.append(user);
     }
 
-    function addHTML(id, name) {
+    function addMemberHTML(id, name) {
       var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-${id}'>
                     <input name='group[user_ids][]' type='hidden' value='${id}'>
                     <p class='chat-group-user__name'>${name}</p>
@@ -29,10 +29,10 @@ $(document).on('turbolinks:load', function(){
         dataType: 'json'
       })
 
-      .done(function(data){
+      .done(function(users){
         $("#user-search-result").empty()
-        data.forEach(function(user){
-          appendUser(user);
+        users.forEach(function(user){
+          appendSearchUserResult(user);
         });
       })
       .fail(function(){
@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', function(){
     $('.chat-group-form__field').on('click', '.user-search-add', function(e){
       var id = $(this).data('user-id')
       var name = $(this).data('user-name')
-      addHTML(id, name);
+      addMemberHTML(id, name);
       $("#user-search-field").val("");
       $(this).parent().remove();
     })
