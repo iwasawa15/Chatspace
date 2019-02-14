@@ -4,7 +4,7 @@
   .messages__time
     = message.created_at.strftime("%Y/%m/%d %H:%M")
   - if message.body.present?
-    .messges__text
+    .messages__text
       = message.body
-  - elsif message.image.present?
+  - if message.image.present?
     = image_tag message.image.url
