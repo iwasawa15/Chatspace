@@ -1,31 +1,18 @@
 $(function(){
-  function buildHTML(message){
-    if (message.image){
-      var html = `<div class="messages__box">
-                    <div class="messages__name">
-                      ${message.user_name}
-                    </div>
-                    <div class="messages__time">
-                      ${message.date}
-                    </div>
-                    <div class="messages__text">
-                      ${message.body}
-                    </div>
-                    <img src=${message.image}>
-                  </div>`
-    } else {
-      var html = `<div class="messages__box">
-                    <div class="messages__name">
-                      ${message.user_name}
-                    </div>
-                    <div class="messages__time">
-                      ${message.date}
-                    </div>
-                    <div class="messages__text">
-                      ${message.body}
-                    </div>
-                  </div>`
-    }
+  function buildSendMessageHTML(message){
+    var image = (message.image) ? `<img src=${message.image}>` : "";
+    var html = `<div class="messages__box">
+                  <div class="messages__name">
+                    ${message.user_name}
+                  </div>
+                  <div class="messages__time">
+                    ${message.date}
+                  </div>
+                  <div class="messages__text">
+                    ${message.body}
+                  </div>
+                  ${image}
+                </div>`
     return html;
   }
 
@@ -42,12 +29,11 @@ $(function(){
       contentType: false
     })
 
-    .done(function(data){
-      var html = buildHTML(data);
+    .done(function(message){
+      var html = buildSendMessageHTML(message);
       $('.messages').append(html)
-      $('.messages').animate({scrollTop: $('.messages').height()}, 'fast')
-      $('.text-field').val('')
-      $('.upload-file').val('')
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+      $('.new_message')[0].reset()
     })
     .fail(function(){
       alert('error');
