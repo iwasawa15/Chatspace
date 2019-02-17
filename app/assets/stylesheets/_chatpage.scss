@@ -27,7 +27,7 @@ a{
     padding: 20px;
     height: calc(100vh - 100px);
     box-sizing: border-box;
-
+    overflow: scroll;
     &__name{
       padding-top: 20px;
       font-size: 15px;
