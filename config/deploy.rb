@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "Chatspace"
+set :repo_url, "git@github.com:iwasawa15/Chatspace.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -24,7 +24,10 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+
+set :rbenv_type, :user
+set :rbenv_ruby, '2.3.1'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -36,4 +39,16 @@ set :repo_url, "git@example.com:me/my_repo.git"
 # set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
-# set :ssh_options, verify_host_key: :secure
+set :ssh_options, auth_methods: ['publickey'],
+                  keys: ['<ローカルPCのEC2インスタンスのSSH鍵(pem)へのパス>']  ※例：~/.ssh/key_pem.pem
+
+set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
+set :unicorn_config_path, -> { "#{current_path}/config/unicorn.rb" }
+set :keep_releases, 5
+
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
